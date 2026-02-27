@@ -66,13 +66,13 @@ entradaDados.question('Digite o nome do aluno: ', function (nomeAluno) {
                                         // Acessando as propriedades do objeto retornado
                                         if (media.status === 'Aprovado') {
                                             console.log(`
-                                            ******************************       Relatório do aluno       ************************************************** 
-                                            *****  ${titulos.aluno}: [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
-                                            *****  Curso: ${nomeCursoTratado} 
-                                            *****  ${titulos.professor}: ${nomeProfessorTratado} 
-                                            *****  ${titulos.notas}: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}
-                                            *****  Média Final: [ ${titulos.status} ] com média ${media.valor}
-                                            ****************************************************************************************************************`)
+                                                ******************************       Relatório do aluno       ************************************************** 
+                                                *****  ${titulos.aluno}: [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
+                                                *****  Curso: ${nomeCursoTratado} 
+                                                *****  ${titulos.professor}: ${nomeProfessorTratado} 
+                                                *****  ${titulos.notas}: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}
+                                                *****  Média Final: [ ${titulos.status} ] com média ${media.valor}
+                                                ****************************************************************************************************************`)
                                             entradaDados.close()
                                         } else if (media.status === 'Reprovado') {
                                             console.log(`
@@ -87,6 +87,9 @@ entradaDados.question('Digite o nome do aluno: ', function (nomeAluno) {
                                         } else if (media.status === 'Exame') {
                                             entradaDados.question('Digite a nota do exame: ', function (notaExame) {
                                                 let notaExameTratada = Number(notaExame)
+
+                                                //Chamada da função validandoSexo para ajustar os títulos de acordo com o sexo do aluno e do professor, e o status da média
+                                                let titulos = tratativas.validandoSexo(sexoAlunoTratado, sexoProfessorTratado, media.status)
 
                                                 // Validação da nota do exame
                                                 const tratativasExame = require('./model/tratativas');

@@ -49,18 +49,32 @@ const validarEntradaExame = function (notaExameTratada) {
     }
 }
 
-const validandoSexo = function (sexoAlunoTratado,sexoProfessorTratado) {
-    if(sexoAlunoTratado == 'Masculino') {
-        sexoAlunoTratado = 'o aluno'
-    }else if(sexoAlunoTratado == 'Feminino') {
-        sexoAlunoTratado = 'a aluna'
+const validandoSexo = function (sexoAlunoTratado, sexoProfessorTratado, statusMedia) {
+    //Criando objeto Titulos para armazenar os títulos de acordo com o sexo do aluno e do professor, e o status da média
+    let titulos = {
+        aluno: 'O aluno',
+        professor: 'Professor',
+        notas: 'Notas do aluno',
+        status: statusMedia 
     }
 
-    if(sexoProfessorTratado == 'Masculino') {
-        sexoProfessorTratado = 'o professor'
-    }else if(sexoProfessorTratado == 'Feminino') {
-        sexoProfessorTratado = 'a professora'
+    // Se for feminino, alteramos os valores do objeto titulos para o gênero feminino, e também ajustamos a gramática do status se não for Exame
+    if(sexoAlunoTratado === 'Feminino') {
+        titulos.aluno = 'A aluna'
+
+        titulos.notas = 'Notas da aluna'
+        
+        // Ajusta a gramática do status se não for Exame
+        if (statusMedia === 'Aprovado') titulos.status = 'Aprovada'
+        if (statusMedia === 'Reprovado') titulos.status = 'Reprovada'
     }
+
+    // Se for feminino, alteramos os valores do objeto titulos para o gênero feminino
+    if(sexoProfessorTratado === 'Feminino') {
+        titulos.professor = 'Professora'
+    }
+
+    return titulos
 }
 
 module.exports = {

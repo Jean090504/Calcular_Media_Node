@@ -60,26 +60,29 @@ entradaDados.question('Digite o nome do aluno: ', function (nomeAluno) {
                                         // Chamada da função calcularMedia
                                         let media = calculos.calcularMedia(nota1Tratada, nota2Tratada, nota3Tratada, nota4Tratada)
 
+                                        //Chamada da função validandoSexo para ajustar os títulos de acordo com o sexo do aluno e do professor, e o status da média
+                                        let titulos = tratativas.validandoSexo(sexoAlunoTratado, sexoProfessorTratado, media.status)
+
                                         // Acessando as propriedades do objeto retornado
                                         if (media.status === 'Aprovado') {
                                             console.log(`
                                             ******************************       Relatório do aluno       ************************************************** 
-                                            *****  O aluno [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
+                                            *****  ${titulos.aluno}: [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
                                             *****  Curso: ${nomeCursoTratado} 
-                                            *****  Professor: ${nomeProfessorTratado} 
-                                            *****  Notas do aluno: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}
-                                            *****  Média Final: [ ${media.status} ] com média ${media.valor}
+                                            *****  ${titulos.professor}: ${nomeProfessorTratado} 
+                                            *****  ${titulos.notas}: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}
+                                            *****  Média Final: [ ${titulos.status} ] com média ${media.valor}
                                             ****************************************************************************************************************`)
                                             entradaDados.close()
                                         } else if (media.status === 'Reprovado') {
                                             console.log(`
-                                            ******************************       Relatório do aluno       ************************************************** 
-                                            *****  O aluno [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
-                                            *****  Curso: ${nomeCursoTratado} 
-                                            *****  Professor: ${nomeProfessorTratado} 
-                                            *****  Notas do aluno: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}
-                                            *****  Média Final: [ ${media.status} ] com média ${media.valor}
-                                            ****************************************************************************************************************`)
+                                                ******************************       Relatório do aluno       ************************************************** 
+                                                *****  ${titulos.aluno}: [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
+                                                *****  Curso: ${nomeCursoTratado} 
+                                                *****  ${titulos.professor}: ${nomeProfessorTratado} 
+                                                *****  ${titulos.notas}: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}
+                                                *****  Média Final: [ ${titulos.status} ] com média ${media.valor}
+                                                ****************************************************************************************************************`)
                                             entradaDados.close()
                                         } else if (media.status === 'Exame') {
                                             entradaDados.question('Digite a nota do exame: ', function (notaExame) {
@@ -101,21 +104,21 @@ entradaDados.question('Digite o nome do aluno: ', function (nomeAluno) {
                                                 if (media.status === 'Aprovado' || media.status === 'Reprovado') {
                                                     console.log(`
                                                     ******************************       Relatório do aluno       ************************************************** 
-                                                    *****  O aluno [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
+                                                    *****  ${titulos.aluno}: [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
                                                     *****  Curso: ${nomeCursoTratado} 
-                                                    *****  Professor: ${nomeProfessorTratado} 
-                                                    *****  Notas do aluno: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}, Exame: ${notaExameTratada}
-                                                    *****  Média Final:[ ${mediaExame.status} ] com média do exame ${mediaExame.valor} 
+                                                    *****  ${titulos.professor}: ${nomeProfessorTratado} 
+                                                    *****  ${titulos.notas}: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}, Exame: ${notaExameTratada}
+                                                    *****  Média Final:[ ${titulos.status}} ] com média do exame ${mediaExame.valor} 
                                                     ****************************************************************************************************************`)
                                                 }else {
                                                     console.log(`
-                                                ******************************       Relatório do aluno       ************************************************** 
-                                                *****  O aluno [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
-                                                *****  Curso: ${nomeCursoTratado} 
-                                                *****  Professor: ${nomeProfessorTratado} 
-                                                *****  Notas do aluno: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}, Exame: ${notaExameTratada}
-                                                *****  Média Final:[ ${mediaExame.status} ] com média do exame ${mediaExame.valor} 
-                                                ****************************************************************************************************************`)
+                                                    ******************************       Relatório do aluno       ************************************************** 
+                                                    *****  ${titulos.aluno}: [ ${nomeAlunoTratado} ] foi [ ${media.status} ] na disciplina [ ${nomeDisciplinaTratado} ]. 
+                                                    *****  Curso: ${nomeCursoTratado} 
+                                                    *****  ${titulos.professor}: ${nomeProfessorTratado} 
+                                                    *****  ${titulos.notas}: ${nota1Tratada}, ${nota2Tratada}, ${nota3Tratada}, ${nota4Tratada}, Exame: ${notaExameTratada}
+                                                    *****  Média Final:[ ${titulos.status}} ] com média do exame ${mediaExame.valor} 
+                                                    ****************************************************************************************************************`)
                                                 }
                                                 entradaDados.close()
                                             })
